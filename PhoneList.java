@@ -1,4 +1,18 @@
-public class PhoneList {
+public class Code {
+  public static void main(String[] args) {
+
+    // Test our implementation
+    PhoneList list = new PhoneList();
+    list.addContact("Yahya", "01097741207");
+    list.addContact("Belal", "01097741207");
+    list.addContact("Marwan", "01097741207");
+    list.displayList();
+
+  }
+}
+
+// Our Implementation
+class PhoneList {
   ContactNode head; // reference to the head
 
   // Inner class
@@ -19,24 +33,39 @@ public class PhoneList {
       this.next = next;
     }
   }
-  public static void main(String args[]) {
-
-  }
   // Methods
-  public static void addContact(String name, String phoneNumber) {
+  public void addContact(String name, String phoneNumber) {
+
+        ContactNode newContact = new ContactNode(name, phoneNumber);
+        if (head == null) { head = newContact; } // List is empty
+    
+        else {
+         ContactNode current = head;
+      
+         while (current.next != null) {
+             current = current.next;
+        }
+        
+        current.next = newContact;
+      }
+      System.out.println("Contact added: " + newContact.name + ", " + newContact.phonNumber);
 
   }
 
 
-  public static void displayList() {
+  public void displayList() {
+    ContactNode current = head;
+    while(current != null) {
+      System.out.println("Name: " + current.name + ", " + "Phone: " + current.phonNumber);
+      current = current.next;
+    }
+  }
+
+  public void searchContact(String name) {
 
   }
 
-  public static void searchContact(String name) {
-
-  }
-
-  public static void deleteContact(String name) {
+  public void deleteContact(String name){
 
   }
 }
